@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://dyo077j1h1ku"]
+[gd_scene load_steps=6 format=3 uid="uid://dyo077j1h1ku"]
 
 [ext_resource type="TileSet" uid="uid://bnkcuejcqyoq5" path="res://assets/tileSets/grass.tres" id="1_coyxa"]
 [ext_resource type="TileSet" uid="uid://dgdmccn8iuwmp" path="res://assets/tileSets/walls.tres" id="2_7mq6e"]
-[ext_resource type="PackedScene" uid="uid://cekhl1q3f6tpl" path="res://resources/target.tscn" id="3_gaxls"]
-[ext_resource type="PackedScene" uid="uid://brwop0nmpm3il" path="res://resources/enemy.tscn" id="4_a4k6f"]
+[ext_resource type="PackedScene" uid="uid://cekhl1q3f6tpl" path="res://levelScenes/target.tscn" id="3_gaxls"]
+[ext_resource type="PackedScene" uid="uid://brwop0nmpm3il" path="res://levelScenes/enemy.tscn" id="4_a4k6f"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_2wcxt"]
+vertices = PackedVector2Array(258.3203, -122.171875, 431.53906, -123.859375, 440.04688, -123.9375, 250.60156, -88.21875, 246.60938, -122.046875, -21.203125, -87.9375, -26.210938, -122.078125, 33, -122.921875, 33, -47.007813, -92.28906, -47.359375, -131.64063, -89.046875, 96.03906, -136.03125, 93.4375, -136.02344, 97.4375, -182.90625, 441.02344, -34, 231.6875, -42.789063, -311.03125, -47.9375, -312.14844, -47.953125, -314.82813, -131.89844, -313.9297, -131.89063, 444.09375, -228.00781, 445.89063, -136.97656, 433.46875, -136.95313, -101.796875, 17.09375, 32, 15.0703125, 32, 139.90625, -312.95313, 193.96875, 444.97656, -34, 444.02344, 190.02344, 30, -184.09375, 30, -134.97656, -28.210938, -134.82031, 94.96094, 141.09375, 95.96094, 15.921875, 222.25, 13.9296875, -135.04688, -134.50781, -312.09375, -229.97656, 255.71875, -136.46094, 140, -83.796875, 94.10156, -43.953125, 140, -136.14844)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 8), PackedInt32Array(5, 8, 9, 10), PackedInt32Array(11, 12, 13), PackedInt32Array(2, 14, 15, 3), PackedInt32Array(16, 17, 18, 19, 10, 9), PackedInt32Array(20, 21, 22), PackedInt32Array(23, 24, 25, 26), PackedInt32Array(14, 27, 28), PackedInt32Array(29, 30, 31), PackedInt32Array(32, 33, 34, 28), PackedInt32Array(15, 14, 28, 34), PackedInt32Array(32, 28, 26, 25), PackedInt32Array(23, 26, 16, 9), PackedInt32Array(35, 10, 19, 36), PackedInt32Array(22, 1, 0, 37, 20), PackedInt32Array(38, 3, 15, 39), PackedInt32Array(40, 38, 39, 11, 13), PackedInt32Array(37, 40, 13, 20), PackedInt32Array(36, 20, 13, 29), PackedInt32Array(35, 36, 29, 31)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-317, -235, 449, -233, 451, -132, 88, -131, 92, -178, 35, -179, 35, -130, -28.194397, -129.82149, -319, -129), PackedVector2Array(241, -127, 445, -129, 446, -36, 89, -39, 91, -134, 145, -137, 145, -89, 245, -93), PackedVector2Array(-32, -127, 38, -128, 38, -42, -317, -43, -320, -137, -130, -134, -127, -94, -27, -93), PackedVector2Array(-316, -52, -87, -49, -96, 12, 37, 10, 37, 135, 90, 136, 91, 11, 218, 9, 226, -39, 450, -39, 449, 195, -318, 199), PackedVector2Array(439, -140, 436, -120, 254, -118, 250, -140)])
+agent_radius = 5.0
 
 [node name="TestScene" type="Node2D"]
 
@@ -21,8 +27,12 @@ layer_0/tile_data = PackedInt32Array(65531, 262144, 2, 65532, 327680, 2, 65533, 
 position = Vector2(66, -17)
 zoom = Vector2(1.5, 1.5)
 
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_2wcxt")
+
 [node name="Enemy" parent="." instance=ExtResource("4_a4k6f")]
-position = Vector2(276, -77)
+position = Vector2(-22, 83)
+PathToTarget = NodePath("../Target")
 
 [node name="Target" parent="." instance=ExtResource("3_gaxls")]
-position = Vector2(-1, -76)
+position = Vector2(-184, -153)
