@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 # Variabel för att definera "Target"
 @export var PathToTarget = NodePath()
+@export var PathToTarget2 = NodePath()
 
 # Variabler för hastighet och rörelse
 var Velocity = Vector2.ZERO
@@ -28,6 +29,9 @@ func updatePath():
 	UpdatePathTimer.start()
 	
 func _physics_process(delta):
+	# Ändrar target
+	if Global.CurrentTarget == 2:
+		Target = get_node(PathToTarget2)
 	
 	# Fixar så att enemy inte "gungar" när den är framme
 	if NavAgent.is_navigation_finished():

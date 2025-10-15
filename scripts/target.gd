@@ -14,3 +14,8 @@ func _input_event(viewport, event, shape_idx):
 func _process(_delta):
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) && CanGrab:
 		position = get_global_mouse_position() + Offset
+
+
+func _on_switch_target_hitbox_body_entered(body):
+	if body.name == "Enemy":
+		Global.CurrentTarget = 2
