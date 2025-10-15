@@ -3,9 +3,7 @@
 [ext_resource type="Script" uid="uid://eip8qdmj1dtx" path="res://scripts/enemy.gd" id="1_efrv5"]
 [ext_resource type="Texture2D" uid="uid://deygmrmi2d2vd" path="res://assets/artwork/EnemyTiles.png" id="1_vs7ap"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_efrv5"]
-radius = 15.0
-height = 38.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_efrv5"]
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_efrv5")
@@ -16,8 +14,8 @@ texture = ExtResource("1_vs7ap")
 hframes = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
-shape = SubResource("CapsuleShape2D_efrv5")
+position = Vector2(-1, 1)
+shape = SubResource("CircleShape2D_efrv5")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
