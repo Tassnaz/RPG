@@ -33,11 +33,12 @@ navigation_polygon = SubResource("NavigationPolygon_2wcxt")
 
 [node name="Enemy" parent="." instance=ExtResource("4_a4k6f")]
 position = Vector2(-22, 83)
-PathToTarget = NodePath("../Target")
+PathToTarget = NodePath("../Player")
 PathToTarget2 = NodePath("../Target2")
 
-[node name="Target" parent="." instance=ExtResource("3_gaxls")]
+[node name="Player" parent="." instance=ExtResource("3_gaxls")]
 position = Vector2(-184, -153)
+max_speed = 200
 
 [node name="Target2" parent="." instance=ExtResource("5_1t2mo")]
 position = Vector2(342, 2)
