@@ -26,15 +26,19 @@ func _physics_process(delta):
 	# Animationer
 	if Input.is_action_pressed("Left") && !Input.is_action_pressed("Right"):
 		$AnimationPlayer.play("Left")
+		$Sword.rotation_degrees = -90
 	
 	elif Input.is_action_pressed("Right") && !Input.is_action_pressed("Left"):
 		$AnimationPlayer.play("Right")
+		$Sword.rotation_degrees = 90
 	
 	elif Input.is_action_pressed("Up"):
 		$AnimationPlayer.play("Up")
+		$Sword.rotation_degrees = 0
 	
 	elif Input.is_action_pressed("Down"):
 		$AnimationPlayer.play("Down")
+		$Sword.rotation_degrees = 180
 	
 	else: 
 		$AnimationPlayer.stop()

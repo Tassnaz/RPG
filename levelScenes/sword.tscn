@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://bvcnq221c6tyu"]
+[gd_scene load_steps=2 format=3 uid="uid://bvcnq221c6tyu"]
+
+[ext_resource type="Script" uid="uid://dlftb0dkcnl0g" path="res://levelScenes/sword.gd" id="1_1r7mj"]
 
 [node name="Sword" type="Area2D"]
+script = ExtResource("1_1r7mj")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, -2)
@@ -12,3 +15,6 @@ color = Color(0.81193006, 0, 0.35908714, 0.42745098)
 polygon = PackedVector2Array(-17, 0, -32, -16, -24, -24, 0, -32, 24, -24, 32, -16, 16, 0)
 
 [node name="CoolDown" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="CoolDown" to="." method="_on_cool_down_timeout"]

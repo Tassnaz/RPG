@@ -103,6 +103,7 @@ _data = {
 }
 
 [node name="Target" type="CharacterBody2D"]
+texture_filter = 1
 input_pickable = true
 script = ExtResource("1_7dav2")
 

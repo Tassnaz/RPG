@@ -1,5 +1,9 @@
 extends CharacterBody2D
 
+
+var HP = 40
+var can_move = true
+
 # Variabel för att definera "Target"
 @export var PathToTarget = NodePath()
 @export var PathToTarget2 = NodePath()
@@ -46,3 +50,6 @@ func _physics_process(delta):
 	
 	# Rör Enemy
 	Velocity = move_and_slide()
+	
+	if can_move == true:
+		Velocity = move_and_slide(Velocity)
