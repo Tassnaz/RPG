@@ -1,55 +1,82 @@
 extends CharacterBody2D
 
-
 var HP = 40
 var can_move = true
 
-# Variabel för att definera "Target"
-@export var PathToTarget = NodePath()
-@export var PathToTarget2 = NodePath()
+# Target Variables
+@export var PathToTarget: NodePath
+@export var PathToTarget2: NodePath
 
-# Variabler för hastighet och rörelse
-var Velocity = Vector2.ZERO
-@export var MaxSpeed = 280
+# Movement Variables
+@export var MaxSpeed = 150
 var Acceleration = 8.0
 
-# Kopplingar till olika noder
-@onready var Target = get_node(PathToTarget)
+# Node References
+# Vi sparar referenser till båda målen här för att spara prestanda
+@onready var TargetNode1 = get_node_or_null(PathToTarget)
+@onready var TargetNode2 = get_node_or_null(PathToTarget2)
+@onready var CurrentTargetNode = TargetNode1 # Startar med Target 1
+
 @onready var NavAgent = $NavigationAgent2D
-@onready var UpdatePathTimer = get_node("UpdateTimer")
+@onready var UpdatePathTimer = $UpdateTimer
 
 func _ready():
+	# Sätter första pathfinding-punkten direkt
+	updatePath()
 	
-	# Talar om vart "Target" är
-	NavAgent.set_target_position(Target.global_position)
-	
-	# Kopplar timern med kod samt sätter igång den
+	# Kopplar timern. Om timern i editorn är satt till "One Shot: false", 
+	# behöver du inte starta den manuellt inuti funktionen.
 	UpdatePathTimer.timeout.connect(updatePath)
 	UpdatePathTimer.start()
 
 func updatePath():
-	
-	NavAgent.set_target_position(Target.global_position)
-	UpdatePathTimer.start()
-	
+	if CurrentTargetNode != null:
+		NavAgent.target_position = CurrentTargetNode.global_position
+
 func _physics_process(delta):
-	# Ändrar target
+	# Ändrar vilket target vi följer baserat på global variabel
 	if Global.CurrentTarget == 2:
-		Target = get_node(PathToTarget2)
+		CurrentTargetNode = TargetNode2
+	else:
+		CurrentTargetNode = TargetNode1
 	
-	# Fixar så att enemy inte "gungar" när den är framme
-	if NavAgent.is_navigation_finished():
+	# Om Navigationen är klar eller vi inte får röra oss, stanna.
+	if NavAgent.is_navigation_finished() or can_move == false:
+		# Saktar ner mjukt till 0
+		velocity = velocity.lerp(Vector2.ZERO, Acceleration * delta)
+		move_and_slide()
 		return
-		
-	var Direction = global_position.direction_to(NavAgent.get_next_path_position())
-	var TargetVelocity = Direction * MaxSpeed
-	var Steering = (TargetVelocity - velocity) * delta * Acceleration
+
+	# Hämta nästa position från NavigationAgent
+	var CurrentAgentPosition = global_position
+	var NextPathPosition = NavAgent.get_next_path_position()
 	
-	# Ökar velocity baserat på ekvationen ovan
+	# Räkna ut riktning och steering
+	var Direction = CurrentAgentPosition.direction_to(NextPathPosition)
+	var TargetVelocity = Direction * MaxSpeed
+	
+	# "Steering behavior" - mjuk sväng
+	var Steering = (TargetVelocity - velocity) * delta * Acceleration
 	velocity += Steering
 	
-	# Rör Enemy
-	Velocity = move_and_slide()
+	# Godot 4 hanterar rörelse automatiskt med den inbyggda 'velocity'-variabeln
+	move_and_slide()
+
+
+func _on_hit_box_area_entered(area):
 	
-	if can_move == true:
-		Velocity = move_and_slide(Velocity)
+	if area.get("Type") == "weapon":
+		print ("Enemy has been attacked")
+		
+		HP = HP - area.get("Damage")
+		print ("Enemy HP is ", HP)
+		
+		if HP <= 0:
+			queue_free()
+			
+		$HitCoolDown.start()
+		can_move = false
+
+
+func _on_hit_cool_down_timeout():
+	can_move = true

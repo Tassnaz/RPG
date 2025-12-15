@@ -12,9 +12,6 @@ height = 38.0
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_efrv5")
-PathToTarget = null
-PathToTarget2 = null
-MaxSpeed = 180
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_vs7ap")
@@ -34,3 +31,8 @@ wait_time = 0.1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource("CapsuleShape2D_efrv5")
 debug_color = Color(0, 0.6431373, 0, 0.41960785)
+
+[node name="HitCoolDown" type="Timer" parent="."]
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="timeout" from="HitCoolDown" to="." method="_on_hit_cool_down_timeout"]

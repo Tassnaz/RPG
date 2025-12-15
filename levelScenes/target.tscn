@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cekhl1q3f6tpl"]
+[gd_scene load_steps=11 format=3 uid="uid://cekhl1q3f6tpl"]
 
 [ext_resource type="Script" uid="uid://l4l6sf3idqaw" path="res://scripts/target.gd" id="1_7dav2"]
 [ext_resource type="Texture2D" uid="uid://daabbg776k5r7" path="res://assets/artwork/MainCharacter.png" id="2_re6lu"]
@@ -6,9 +6,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sbd8b"]
 size = Vector2(33, 38)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_re6lu"]
-size = Vector2(35, 40)
 
 [sub_resource type="Animation" id="Animation_mf3hi"]
 resource_name = "Down"
@@ -121,18 +118,8 @@ shape = SubResource("RectangleShape2D_sbd8b")
 [node name="Sword" parent="." instance=ExtResource("3_aadpq")]
 position = Vector2(0, 1)
 
-[node name="SwitchTargetHitbox" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SwitchTargetHitbox"]
-texture_filter = 1
-position = Vector2(-0.5, 1)
-shape = SubResource("RectangleShape2D_re6lu")
-debug_color = Color(0.97221905, 0.13375625, 0.26391807, 0.41960785)
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_ga3ve")
 }
 speed_scale = 10.0
-
-[connection signal="body_entered" from="SwitchTargetHitbox" to="." method="_on_switch_target_hitbox_body_entered"]
