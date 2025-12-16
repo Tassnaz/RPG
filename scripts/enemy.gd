@@ -1,13 +1,13 @@
 extends CharacterBody2D
 
-var HP = 40
+@export var HP = 100
 var can_move = true
 
-# Target Variables
+# Define targets
 @export var PathToTarget: NodePath
 @export var PathToTarget2: NodePath
 
-# Movement Variables
+# Movement values
 @export var MaxSpeed = 150
 var Acceleration = 8.0
 
@@ -34,6 +34,9 @@ func updatePath():
 		NavAgent.target_position = CurrentTargetNode.global_position
 
 func _physics_process(delta):
+	
+	$HealthBar.value = HP
+	
 	# Ändrar vilket target vi följer baserat på global variabel
 	if Global.CurrentTarget == 2:
 		CurrentTargetNode = TargetNode2

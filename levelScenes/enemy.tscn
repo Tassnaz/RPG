@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://brwop0nmpm3il"]
+[gd_scene load_steps=7 format=3 uid="uid://brwop0nmpm3il"]
 
 [ext_resource type="Script" uid="uid://eip8qdmj1dtx" path="res://scripts/enemy.gd" id="1_efrv5"]
 [ext_resource type="Texture2D" uid="uid://deygmrmi2d2vd" path="res://assets/artwork/EnemyTiles.png" id="1_vs7ap"]
@@ -9,6 +9,12 @@ radius = 8.062258
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_efrv5"]
 radius = 12.0
 height = 38.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efrv5"]
+bg_color = Color(0.99607843, 0, 0.0627451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xl8dm"]
+bg_color = Color(0, 0.69803923, 0, 1)
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_efrv5")
@@ -22,6 +28,9 @@ position = Vector2(-1, 1)
 shape = SubResource("CircleShape2D_efrv5")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 5.0
+target_desired_distance = 5.0
+path_max_distance = 50.0
 
 [node name="UpdateTimer" type="Timer" parent="."]
 wait_time = 0.1
@@ -33,6 +42,17 @@ shape = SubResource("CapsuleShape2D_efrv5")
 debug_color = Color(0, 0.6431373, 0, 0.41960785)
 
 [node name="HitCoolDown" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -19.0
+offset_top = -31.0
+offset_right = 19.0
+offset_bottom = -21.0
+theme_override_styles/background = SubResource("StyleBoxFlat_efrv5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xl8dm")
+value = 50.0
+show_percentage = false
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
 [connection signal="timeout" from="HitCoolDown" to="." method="_on_hit_cool_down_timeout"]

@@ -1,7 +1,7 @@
 extends Area2D
 
 var is_attacking = false
-@export var Damage = 10
+@export var Damage = 20
 var Type = "weapon"
 
 

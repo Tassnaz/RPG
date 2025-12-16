@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://cekhl1q3f6tpl"]
 
-[ext_resource type="Script" uid="uid://l4l6sf3idqaw" path="res://scripts/target.gd" id="1_7dav2"]
+[ext_resource type="Script" uid="uid://l4l6sf3idqaw" path="res://scripts/player.gd" id="1_7dav2"]
 [ext_resource type="Texture2D" uid="uid://daabbg776k5r7" path="res://assets/artwork/MainCharacter.png" id="2_re6lu"]
 [ext_resource type="PackedScene" uid="uid://bvcnq221c6tyu" path="res://levelScenes/sword.tscn" id="3_aadpq"]
 

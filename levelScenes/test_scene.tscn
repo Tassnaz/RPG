@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dyo077j1h1ku"]
+[gd_scene load_steps=6 format=3 uid="uid://dyo077j1h1ku"]
 
 [ext_resource type="TileSet" uid="uid://bnkcuejcqyoq5" path="res://assets/tileSets/grass.tres" id="1_coyxa"]
 [ext_resource type="TileSet" uid="uid://dgdmccn8iuwmp" path="res://assets/tileSets/walls.tres" id="2_7mq6e"]
-[ext_resource type="PackedScene" uid="uid://cekhl1q3f6tpl" path="res://levelScenes/target.tscn" id="3_gaxls"]
+[ext_resource type="PackedScene" uid="uid://cekhl1q3f6tpl" path="res://levelScenes/player.tscn" id="3_gaxls"]
 [ext_resource type="PackedScene" uid="uid://brwop0nmpm3il" path="res://levelScenes/enemy.tscn" id="4_a4k6f"]
-[ext_resource type="PackedScene" uid="uid://2jachg2lfjue" path="res://levelScenes/target_2.tscn" id="5_1t2mo"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_2wcxt"]
 vertices = PackedVector2Array(258.3203, -122.171875, 431.53906, -123.859375, 440.04688, -123.9375, 250.60156, -88.21875, 246.60938, -122.046875, 236, 12.890625, 441.02344, -34, 444.97656, -34, 444.02344, 190.02344, 94.96094, 161.09375, 236, -42.757813, -21.203125, -87.9375, -26.210938, -122.078125, 33, -122.921875, 33, -47.007813, -106.96875, -47.398438, -131.64063, -89.046875, -311.03125, -47.9375, -312.14844, -47.953125, -314.82813, -131.89844, -313.9297, -131.89063, 96.03906, -136.03125, 93.078125, -136.00781, 94.09375, -193.10156, 444.09375, -228.00781, 445.89063, -136.97656, 433.46875, -136.95313, -105.921875, 17.070313, 32, 15.0703125, 32, 159.90625, -312.95313, 193.96875, 30, -191.90625, 30, -134.97656, -28.210938, -134.82031, 95.96094, 15.890625, -135.04688, -134.50781, -312.09375, -229.97656, 255.71875, -136.46094, 140, -83.796875, 94.10156, -43.953125, 140, -136.14844)
@@ -34,11 +33,7 @@ navigation_polygon = SubResource("NavigationPolygon_2wcxt")
 [node name="Enemy" parent="." instance=ExtResource("4_a4k6f")]
 position = Vector2(-22, 83)
 PathToTarget = NodePath("../Player")
-PathToTarget2 = NodePath("../Target2")
 
 [node name="Player" parent="." instance=ExtResource("3_gaxls")]
 position = Vector2(-184, -153)
 max_speed = 200
-
-[node name="Target2" parent="." instance=ExtResource("5_1t2mo")]
-position = Vector2(342, 2)
