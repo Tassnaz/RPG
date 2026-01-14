@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://chdkttuh6w5ys"]
+
+[ext_resource type="Texture2D" uid="uid://dau6mh8o301bj" path="res://assets/artwork/wojak wizzard.jpg" id="1_3j8co"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wg57d"]
+size = Vector2(176, 428)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jksoq"]
+size = Vector2(224, 406)
+
+[node name="NPC" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(7.6293945e-06, 0)
+scale = Vector2(0.5833333, 0.5833333)
+texture = ExtResource("1_3j8co")
+
+[node name="InterractShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 41)
+shape = SubResource("RectangleShape2D_wg57d")
+debug_color = Color(0, 0.6431373, 0.0627451, 0.63529414)
+
+[node name="Collision" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
+shape = SubResource("RectangleShape2D_jksoq")

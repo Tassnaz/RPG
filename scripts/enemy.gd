@@ -75,7 +75,7 @@ func _on_hit_box_area_entered(area):
 		print ("Enemy HP is ", HP)
 		
 		if HP <= 0:
-			queue_free()
+			queue_free() 
 			
 		$HitCoolDown.start()
 		can_move = false
