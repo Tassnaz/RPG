@@ -1,3 +1,3 @@
 extends Node
 
-var CurrentTarget = 1
+var current_dialog = ""
