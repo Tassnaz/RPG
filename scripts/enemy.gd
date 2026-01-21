@@ -37,11 +37,6 @@ func _physics_process(delta):
 	
 	$HealthBar.value = HP
 	
-	# Ändrar vilket target vi följer baserat på global variabel
-	if Global.CurrentTarget == 2:
-		CurrentTargetNode = TargetNode2
-	else:
-		CurrentTargetNode = TargetNode1
 	
 	# Om Navigationen är klar eller vi inte får röra oss, stanna.
 	if NavAgent.is_navigation_finished() or can_move == false:

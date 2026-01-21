@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://chdkttuh6w5ys"]
+[gd_scene load_steps=6 format=3 uid="uid://chdkttuh6w5ys"]
 
 [ext_resource type="Texture2D" uid="uid://dau6mh8o301bj" path="res://assets/artwork/wojak wizzard.jpg" id="1_3j8co"]
+[ext_resource type="Script" uid="uid://b1c6atecek38o" path="res://scripts/npc.gd" id="1_jksoq"]
 [ext_resource type="PackedScene" uid="uid://b84t126yggjvg" path="res://levelScenes/dialog_box.tscn" id="2_wg57d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wg57d"]
@@ -11,6 +12,7 @@ size = Vector2(224, 406)
 
 [node name="NPC" type="Area2D"]
 scale = Vector2(0.3, 0.3)
+script = ExtResource("1_jksoq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(7.6293945e-06, 0)
@@ -28,4 +30,7 @@ debug_color = Color(0, 0.6431373, 0.0627451, 0.63529414)
 shape = SubResource("RectangleShape2D_jksoq")
 
 [node name="DialogBox" parent="." instance=ExtResource("2_wg57d")]
-position = Vector2(-110.00001, 103.33333)
+position = Vector2(-290, -390)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

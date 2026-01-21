@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b84t126yggjvg"]
 
-[ext_resource type="Script" uid="uid://bipjgbx03yfny" path="res://dialog_box.gd" id="1_i5wkf"]
+[ext_resource type="Script" uid="uid://bipjgbx03yfny" path="res://scripts/dialog_box.gd" id="1_i5wkf"]
 [ext_resource type="FontFile" uid="uid://j0k4naknugef" path="res://assets/font/8bitoperator_jve.ttf" id="2_nyqis"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lda5d"]
@@ -11,7 +11,7 @@ border_width_right = 2
 border_width_bottom = 2
 
 [node name="DialogBox" type="Node2D"]
-scale = Vector2(1.5, 1.5)
+scale = Vector2(4, 4)
 script = ExtResource("1_i5wkf")
 
 [node name="Control" type="Control" parent="."]
