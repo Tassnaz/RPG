@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6iydnuqacvi8"]
+
+[ext_resource type="Texture2D" uid="uid://bb37trce1bxx1" path="res://assets/Tiny Swords (Free Pack)/Buildings/Blue Buildings/House1.png" id="1_7aoon"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7aoon"]
+size = Vector2(113, 148)
+
+[node name="House" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7aoon")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7aoon")

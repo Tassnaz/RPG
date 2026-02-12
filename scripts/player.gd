@@ -25,23 +25,25 @@ func _physics_process(delta):
 	
 	# Animationer
 	if Input.is_action_pressed("Left") && !Input.is_action_pressed("Right"):
-		$AnimationPlayer.play("Left")
+		$AnimatedSprite2D.scale.x = -1
+		$AnimatedSprite2D.play("Run")
 		$Sword.rotation_degrees = -90
 	
 	elif Input.is_action_pressed("Right") && !Input.is_action_pressed("Left"):
-		$AnimationPlayer.play("Right")
+		$AnimatedSprite2D.scale.x = 1
+		$AnimatedSprite2D.play("Run")
 		$Sword.rotation_degrees = 90
 	
-	elif Input.is_action_pressed("Up"):
-		$AnimationPlayer.play("Up")
-		$Sword.rotation_degrees = 0
+	#elif Input.is_action_pressed("Up"):
+		#$AnimationPlayer.play("Up")
+		#$Sword.rotation_degrees = 0
 	
-	elif Input.is_action_pressed("Down"):
-		$AnimationPlayer.play("Down")
-		$Sword.rotation_degrees = 180
+	#elif Input.is_action_pressed("Down"):
+		#$AnimationPlayer.play("Down")
+		#$Sword.rotation_degrees = 180
 	
-	else: 
-		$AnimationPlayer.stop()
+	#else: 
+		#$AnimationPlayer.stop()
 
 
 func _on_switch_target_hitbox_body_entered(body):
