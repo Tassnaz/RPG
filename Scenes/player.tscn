@@ -1,9 +1,26 @@
-[gd_scene load_steps=21 format=3 uid="uid://cekhl1q3f6tpl"]
+[gd_scene load_steps=26 format=3 uid="uid://cekhl1q3f6tpl"]
 
 [ext_resource type="Script" uid="uid://l4l6sf3idqaw" path="res://scripts/player.gd" id="1_7dav2"]
 [ext_resource type="Texture2D" uid="uid://dh83oes5g4guv" path="res://assets/Tiny Swords (Free Pack)/Units/Blue Units/Warrior/Warrior_Idle.png" id="2_6t5aa"]
+[ext_resource type="Texture2D" uid="uid://b8a76pmttg4tw" path="res://assets/Tiny Swords (Free Pack)/Units/Blue Units/Warrior/Warrior_Attack1.png" id="2_fkybt"]
 [ext_resource type="Texture2D" uid="uid://3w81e531fbti" path="res://assets/Tiny Swords (Free Pack)/Units/Blue Units/Warrior/Warrior_Run.png" id="2_vgqql"]
 [ext_resource type="PackedScene" uid="uid://bvcnq221c6tyu" path="res://Scenes/sword.tscn" id="3_aadpq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_igrcy"]
+atlas = ExtResource("2_fkybt")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fs7ks"]
+atlas = ExtResource("2_fkybt")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6n3p"]
+atlas = ExtResource("2_fkybt")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_olqyp"]
+atlas = ExtResource("2_fkybt")
+region = Rect2(576, 0, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pu2lt"]
 atlas = ExtResource("2_vgqql")
@@ -63,6 +80,23 @@ region = Rect2(1344, 0, 192, 192)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pu2lt"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_igrcy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fs7ks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6n3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_olqyp")
+}],
+"loop": true,
+"name": &"Attack 1",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pu2lt")
@@ -126,10 +160,8 @@ script = ExtResource("1_7dav2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pu2lt")
-animation = &"Run"
+animation = &"Attack 1"
 autoplay = "default"
-frame = 1
-frame_progress = 0.50754404
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 2.5)

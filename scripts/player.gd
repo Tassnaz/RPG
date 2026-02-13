@@ -2,9 +2,9 @@ extends CharacterBody2D
 
 
 # Värden
-@export var max_speed = 400
-@export var acceleration = 1000
-@export var friction = 1500
+@export var max_speed = 350
+@export var acceleration = 1500
+@export var friction = 3000
 
 func _physics_process(delta):
 	# Movement
@@ -23,6 +23,7 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	
+	
 	# Animationer
 	if Input.is_action_pressed("Left") && !Input.is_action_pressed("Right"):
 		$AnimatedSprite2D.scale.x = -1
@@ -34,16 +35,16 @@ func _physics_process(delta):
 		$AnimatedSprite2D.play("Run")
 		$Sword.rotation_degrees = 90
 	
-	#elif Input.is_action_pressed("Up"):
-		#$AnimationPlayer.play("Up")
-		#$Sword.rotation_degrees = 0
+	elif Input.is_action_pressed("Up"):
+		$AnimatedSprite2D.play("Run")
+		$Sword.rotation_degrees = 0
+
+	elif Input.is_action_pressed("Down"):
+		$AnimatedSprite2D.play("Run")
+		$Sword.rotation_degrees = 180
 	
-	#elif Input.is_action_pressed("Down"):
-		#$AnimationPlayer.play("Down")
-		#$Sword.rotation_degrees = 180
-	
-	#else: 
-		#$AnimationPlayer.stop()
+	else: 
+		$AnimatedSprite2D.play("default")
 
 
 func _on_switch_target_hitbox_body_entered(body):
