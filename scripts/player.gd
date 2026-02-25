@@ -1,10 +1,19 @@
 extends CharacterBody2D
 
 
-# Värden
+# Variables
+var is_attacking: bool = false
+
 @export var max_speed = 350
 @export var acceleration = 1500
 @export var friction = 3000
+
+@onready var anim_player = $AnimatedSprite2D
+@onready var sword = $Sword
+
+func _ready():
+	# Connect signal
+	sword.attack_triggered.connect(_on_sword_attack_triggered)
 
 func _physics_process(delta):
 	# Movement
@@ -25,27 +34,33 @@ func _physics_process(delta):
 	
 	
 	# Animationer
-	if Input.is_action_pressed("Left") && !Input.is_action_pressed("Right"):
-		$AnimatedSprite2D.scale.x = -1
-		$AnimatedSprite2D.play("Run")
-		$Sword.rotation_degrees = -90
+	if is_attacking == false
+		if Input.is_action_pressed("Left") && !Input.is_action_pressed("Right"):
+			$AnimatedSprite2D.scale.x = -1
+			$AnimatedSprite2D.play("Run")
+			$Sword.rotation_degrees = -90
 	
-	elif Input.is_action_pressed("Right") && !Input.is_action_pressed("Left"):
-		$AnimatedSprite2D.scale.x = 1
-		$AnimatedSprite2D.play("Run")
-		$Sword.rotation_degrees = 90
+		elif Input.is_action_pressed("Right") && !Input.is_action_pressed("Left"):
+			$AnimatedSprite2D.scale.x = 1
+			$AnimatedSprite2D.play("Run")
+			$Sword.rotation_degrees = 90
 	
-	elif Input.is_action_pressed("Up"):
-		$AnimatedSprite2D.play("Run")
-		$Sword.rotation_degrees = 0
+		elif Input.is_action_pressed("Up"):
+			$AnimatedSprite2D.play("Run")
+			$Sword.rotation_degrees = 0
 
-	elif Input.is_action_pressed("Down"):
-		$AnimatedSprite2D.play("Run")
-		$Sword.rotation_degrees = 180
+		elif Input.is_action_pressed("Down"):
+			$AnimatedSprite2D.play("Run")
+			$Sword.rotation_degrees = 180
 	
-	else: 
-		$AnimatedSprite2D.play("default")
+		else:
+			$AnimatedSprite2D.play("default")
 
+func _on_sword_attack_triggered():
+	is_attacking = true
+	anim_player.play("Attack 1")
+	await anim_player.animation_finished
+	is_attacking = false
 
 func _on_switch_target_hitbox_body_entered(body):
 	if body.name == "Enemy":
