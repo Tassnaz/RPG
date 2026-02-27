@@ -4,9 +4,9 @@ extends CharacterBody2D
 # Variables
 var is_attacking: bool = false
 
-@export var max_speed = 350
-@export var acceleration = 1500
-@export var friction = 3000
+@export var max_speed: float = 350.0
+@export var acceleration: float = 1500.0
+@export var friction: float = 3000.0
 
 @onready var anim_player = $AnimatedSprite2D
 @onready var sword = $Sword
@@ -34,7 +34,7 @@ func _physics_process(delta):
 	
 	
 	# Animationer
-	if is_attacking == false
+	if is_attacking == false:
 		if Input.is_action_pressed("Left") && !Input.is_action_pressed("Right"):
 			$AnimatedSprite2D.scale.x = -1
 			$AnimatedSprite2D.play("Run")
