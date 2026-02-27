@@ -8,7 +8,7 @@ script = ExtResource("1_1r7mj")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, -2)
 scale = Vector2(3.1, 1.9499999)
-polygon = PackedVector2Array(-5.4838715, 1.0256411, -10.322581, -7.1794877, -7.7419357, -11.282052, 0, -15.384616, 7.7419357, -11.282052, 10.322581, -7.1794877, 5.1612906, 1.0256411)
+polygon = PackedVector2Array(-5.4838715, 1.0256411, -7.7419357, -7.1794877, -10.322581, -15.384616, 0, -23.589746, 10.322581, -15.384616, 7.7419357, -7.1794877, 5.1612906, 1.0256411)
 
 [node name="CoolDown" type="Timer" parent="."]
 wait_time = 0.5
