@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bb37trce1bxx1" path="res://assets/Tiny Swords (Free Pack)/Buildings/Blue Buildings/House1.png" id="1_7aoon"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7aoon"]
-size = Vector2(113, 148)
+size = Vector2(112, 116)
 
 [node name="House" type="StaticBody2D"]
 
@@ -11,4 +11,5 @@ size = Vector2(113, 148)
 texture = ExtResource("1_7aoon")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 15)
 shape = SubResource("RectangleShape2D_7aoon")
