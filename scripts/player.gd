@@ -61,7 +61,3 @@ func _on_sword_attack_triggered():
 	anim_player.play("Attack 1")
 	await anim_player.animation_finished
 	is_attacking = false
-
-func _on_switch_target_hitbox_body_entered(body):
-	if body.name == "Enemy":
-		Global.CurrentTarget = 2
