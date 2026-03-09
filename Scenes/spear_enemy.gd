@@ -10,8 +10,8 @@ func _ready():
 func _physics_process(delta):
 	
 	if knockback_timer > 0.0:
-		velocity = knockback
 		knockback -= delta
+		velocity = knockback
 		if knockback_timer <= 0.0:
 			knockback = Vector2.ZERO
 	

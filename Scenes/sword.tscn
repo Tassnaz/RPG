@@ -13,4 +13,5 @@ polygon = PackedVector2Array(-5.4838715, 1.0256411, -7.7419357, -7.1794877, -10.
 [node name="CoolDown" type="Timer" parent="."]
 wait_time = 0.5
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="CoolDown" to="." method="_on_cool_down_timeout"]
