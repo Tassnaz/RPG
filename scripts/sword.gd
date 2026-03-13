@@ -5,9 +5,8 @@ signal attack_triggered
 var is_attacking = false
 var Type = "weapon"
 
-@export var Damage = 20
-
-@onready var spear_enemy_node: CharacterBody2D = get_parent().get_parent().get_node("spear_enemy")
+@export var Damage: int = 20
+@export var knockback_force: float = 300.0
 
 
 func _ready():
@@ -30,8 +29,8 @@ func _on_cool_down_timeout():
 	$CoolDown.stop()
 	print("Attack!")
 	
-	
+
 func _on_body_entered(body: Node2D) -> void:
-	if body == spear_enemy_node:
-		var knockback_direction = (body.global_position - global_position).normalized()
-		body.apply_knockback(knockback_direction, 150.0, 0.12)
+	if body.is_in_group("enemies"):
+		var knockback_dir = (body.global_position - global_position).normalized()
+		body.apply_knockback(knockback_dir * knockback_force)
