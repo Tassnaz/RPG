@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://ddmktbtmqsdbs"]
 
-[ext_resource type="Script" uid="uid://cn7wy0oefrly5" path="res://Scenes/spear_enemy.gd" id="1_7n7ku"]
+[ext_resource type="Script" uid="uid://cn7wy0oefrly5" path="res://scripts/spear_enemy.gd" id="1_7n7ku"]
 [ext_resource type="Texture2D" uid="uid://q2p6byen2qyv" path="res://assets/Tiny Swords (Free Pack)/Units/Red Units/Lancer/Lancer_Idle.png" id="1_l3bc0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l3bc0"]
