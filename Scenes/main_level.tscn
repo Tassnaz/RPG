@@ -20,6 +20,7 @@ texture_region_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_lwkuy")
 
 [node name="Main Level" type="Node2D"]
+physics_interpolation_mode = 1
 
 [node name="TileMaps" type="Node2D" parent="."]
 
@@ -57,8 +58,8 @@ position = Vector2(641, 138)
 [node name="Spear Enemy" parent="." instance=ExtResource("6_236hc")]
 position = Vector2(2022, 148)
 
-[node name="Player" parent="." groups=["players"] instance=ExtResource("3_qbrl8")]
-position = Vector2(196, 316)
-
 [node name="Monk NPC" parent="." instance=ExtResource("8_tqiex")]
 position = Vector2(642, 213)
+
+[node name="Player" parent="." groups=["players"] instance=ExtResource("3_qbrl8")]
+position = Vector2(196, 316)
