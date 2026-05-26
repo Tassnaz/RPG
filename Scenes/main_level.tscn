@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://dp3tdjdbw5te8"]
+[gd_scene load_steps=11 format=4 uid="uid://dp3tdjdbw5te8"]
 
 [ext_resource type="TileSet" uid="uid://copk8h1vbac1" path="res://Tilesets/TinySwordTerrain.tres" id="1_ikcpc"]
 [ext_resource type="TileSet" uid="uid://ck7j715ksnc0h" path="res://Tilesets/BG Color.tres" id="1_lwkuy"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cekhl1q3f6tpl" path="res://Scenes/player.tscn" id="3_qbrl8"]
 [ext_resource type="Texture2D" uid="uid://7lm7apbe5nsn" path="res://assets/Tiny Swords (Free Pack)/Terrain/Tileset/Shadow.png" id="4_ha3dl"]
 [ext_resource type="PackedScene" uid="uid://ddmktbtmqsdbs" path="res://Scenes/spear_enemy.tscn" id="6_236hc"]
+[ext_resource type="PackedScene" uid="uid://doxsvgsd1ienm" path="res://Scenes/monk_npc.tscn" id="8_tqiex"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lwkuy"]
 texture = ExtResource("4_ha3dl")
@@ -56,5 +57,8 @@ position = Vector2(641, 138)
 [node name="Spear Enemy" parent="." instance=ExtResource("6_236hc")]
 position = Vector2(2022, 148)
 
-[node name="Player" parent="." instance=ExtResource("3_qbrl8")]
+[node name="Player" parent="." groups=["players"] instance=ExtResource("3_qbrl8")]
 position = Vector2(196, 316)
+
+[node name="Monk NPC" parent="." instance=ExtResource("8_tqiex")]
+position = Vector2(642, 213)

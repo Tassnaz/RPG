@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://doxsvgsd1ienm"]
+[gd_scene load_steps=13 format=3 uid="uid://doxsvgsd1ienm"]
 
 [ext_resource type="Texture2D" uid="uid://bn7soixh5ghqk" path="res://assets/Tiny Swords (Free Pack)/Units/Purple Units/Monk/Idle.png" id="1_2rv0c"]
+[ext_resource type="Script" uid="uid://br7ops4cveakj" path="res://scripts/monk_npc.gd" id="1_yy66q"]
 [ext_resource type="FontFile" uid="uid://b27lwqr75knw3" path="res://assets/font/determination.ttf" id="2_exyvm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_exyvm"]
@@ -63,6 +64,8 @@ border_color = Color(1, 1, 1, 1)
 anti_aliasing = false
 
 [node name="Monk NPC" type="CharacterBody2D"]
+script = ExtResource("1_yy66q")
+metadata/_edit_vertical_guides_ = [-247.0]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -119,3 +122,6 @@ theme_override_fonts/font = ExtResource("2_exyvm")
 theme_override_font_sizes/font_size = 12
 text = "Wormald the  monk"
 vertical_alignment = 1
+
+[connection signal="body_entered" from="InteractArea" to="." method="_on_interact_area_body_entered"]
+[connection signal="body_exited" from="InteractArea" to="." method="_on_interact_area_body_exited"]
