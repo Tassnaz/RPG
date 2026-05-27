@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://dp3tdjdbw5te8"]
+[gd_scene load_steps=14 format=4 uid="uid://dp3tdjdbw5te8"]
 
 [ext_resource type="TileSet" uid="uid://copk8h1vbac1" path="res://Tilesets/TinySwordTerrain.tres" id="1_ikcpc"]
 [ext_resource type="TileSet" uid="uid://ck7j715ksnc0h" path="res://Tilesets/BG Color.tres" id="1_lwkuy"]
@@ -20,6 +20,11 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSet" id="TileSet_tqiex"]
 sources/0 = SubResource("TileSetAtlasSource_lwkuy")
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_f3gli"]
+vertices = PackedVector2Array(1676.8906, 425.5078, 1615, 428.5, 1615, 379.97656, 1843.4688, -51.148438, 2091.0938, -47.148438, 2097.8906, 621.96875, 1678.8906, 621.02344, 1613.9688, 49.3125, 1487.3203, -81.21094, 1490.6406, -174.9375, 1837.4688, -173.04688, 1550, -76.24219, 1550, 47.296875)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(4, 5, 6, 0), PackedInt32Array(3, 2, 7), PackedInt32Array(8, 9, 10, 11), PackedInt32Array(11, 10, 3, 7, 12)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(2108, 632, 1669, 631, 1667, 436, 1605, 439, 1605, 380, 1604, 59, 1540, 57, 1540, -67, 1477, -72, 1481, -185, 1847, -183, 1853, -61, 2101, -57)])
 
 [node name="Main Level" type="Node2D"]
 physics_interpolation_mode = 1
@@ -60,8 +65,10 @@ position = Vector2(865, 425)
 [node name="House" parent="Buildings" instance=ExtResource("3_5erdv")]
 position = Vector2(641, 138)
 
-[node name="Spear Enemy" parent="." instance=ExtResource("6_236hc")]
-position = Vector2(2022, 148)
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Spear Enemy" parent="Enemies" instance=ExtResource("6_236hc")]
+position = Vector2(1881, 221)
 
 [node name="Monk NPC" parent="." instance=ExtResource("8_tqiex")]
 position = Vector2(642, 213)
@@ -72,3 +79,6 @@ quest_dialog_completed = Array[String](["You found my coin!"])
 
 [node name="Player" parent="." groups=["players"] instance=ExtResource("3_qbrl8")]
 position = Vector2(196, 316)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_f3gli")

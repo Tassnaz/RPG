@@ -88,6 +88,7 @@ shape = SubResource("RectangleShape2D_2rv0c")
 debug_color = Color(0.6229724, 0.65958613, 7.70092e-07, 0.41960785)
 
 [node name="DialogBox" type="Control" parent="."]
+physics_interpolation_mode = 1
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 0
