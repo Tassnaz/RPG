@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://8104eyvtxrji"]
+
+[ext_resource type="Script" uid="uid://bicusouc5es3r" path="res://scripts/simple_quest_module.gd" id="1_osomx"]
+
+[node name="SimpleQuestModule" type="Node2D"]
+script = ExtResource("1_osomx")
