@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://ddmktbtmqsdbs"]
+[gd_scene load_steps=15 format=3 uid="uid://ddmktbtmqsdbs"]
 
 [ext_resource type="Script" uid="uid://cn7wy0oefrly5" path="res://scripts/spear_enemy.gd" id="1_7n7ku"]
 [ext_resource type="Texture2D" uid="uid://q2p6byen2qyv" path="res://assets/Tiny Swords (Free Pack)/Units/Red Units/Lancer/Lancer_Idle.png" id="1_l3bc0"]
+[ext_resource type="PackedScene" uid="uid://tfte5i38rhwj" path="res://Scenes/ai_weapon.tscn" id="3_y0y1u"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l3bc0"]
 radius = 22.0
@@ -98,6 +99,7 @@ radius = 274.06567
 [node name="Spear Enemy" type="CharacterBody2D" groups=["enemies"]]
 texture_filter = 1
 script = ExtResource("1_7n7ku")
+speed = 120.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_l3bc0")
@@ -144,6 +146,8 @@ speed_scale = 15.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionArea"]
 shape = SubResource("CircleShape2D_7n7ku")
 debug_color = Color(0.74568725, 0.21341458, 0.99999994, 0.41960785)
+
+[node name="ai_weapon" parent="." instance=ExtResource("3_y0y1u")]
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
 [connection signal="body_entered" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_entered"]
