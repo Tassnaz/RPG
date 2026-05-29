@@ -3,7 +3,7 @@ extends Area2D
 signal attack_triggered
 
 var is_attacking = false
-var Type = "weapon"
+
 
 @export var Damage: int = 20
 @export var knockback_force: float = 300.0

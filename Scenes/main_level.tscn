@@ -77,7 +77,7 @@ position = Vector2(642, 213)
 NPC_node = NodePath("..")
 quest_dialog_completed = Array[String](["You found my coin!"])
 
-[node name="Player" parent="." groups=["players"] instance=ExtResource("3_qbrl8")]
+[node name="Player" parent="." instance=ExtResource("3_qbrl8")]
 position = Vector2(196, 316)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]

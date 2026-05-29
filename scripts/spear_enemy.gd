@@ -35,6 +35,7 @@ func _physics_process(delta):
 	if HP <= 0:
 		queue_free()
 		return
+		
 	
 	knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_friction * delta * 100)
 	
@@ -47,7 +48,7 @@ func apply_knockback(force: Vector2):
 
 func _on_hit_box_area_entered(area):
 	# Det som händer när man slår fienden
-	if area.get("Type") == "weapon":
+	if area.is_in_group("weapons"):
 		print ("Enemy has been atacked")
 		$HurtFlash.play("HurtFlash")
 		
