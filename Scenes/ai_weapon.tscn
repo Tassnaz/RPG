@@ -7,7 +7,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_bq1b1"]
 radius = 29.017237
 
-[node name="ai_weapon" type="Area2D"]
+[node name="ai_weapon" type="Area2D" groups=["enemy_weapons"]]
 script = ExtResource("1_bq1b1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -15,8 +15,10 @@ shape = SubResource("CircleShape2D_0ljx3")
 debug_color = Color(0.9764706, 0.03529412, 0, 0.41960785)
 
 [node name="AttackDelay" type="Timer" parent="."]
+one_shot = true
 
 [node name="AttackDuration" type="Timer" parent="."]
+one_shot = true
 
 [node name="AttackSensor" type="Area2D" parent="."]
 

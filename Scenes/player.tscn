@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cekhl1q3f6tpl"]
+[gd_scene load_steps=30 format=3 uid="uid://cekhl1q3f6tpl"]
 
 [ext_resource type="Script" uid="uid://l4l6sf3idqaw" path="res://scripts/player.gd" id="1_7dav2"]
 [ext_resource type="Texture2D" uid="uid://dh83oes5g4guv" path="res://assets/Tiny Swords (Free Pack)/Units/Blue Units/Warrior/Warrior_Idle.png" id="2_6t5aa"]
@@ -154,6 +154,48 @@ animations = [{
 radius = 11.0
 height = 32.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x3wgy"]
+radius = 34.0
+height = 88.0
+
+[sub_resource type="Animation" id="Animation_fkybt"]
+resource_name = "invincible_flash"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.14509805, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_x3wgy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3smsa"]
+_data = {
+&"RESET": SubResource("Animation_x3wgy"),
+&"invincible_flash": SubResource("Animation_fkybt")
+}
+
 [node name="Player" type="CharacterBody2D" groups=["Players", "players"]]
 texture_filter = 1
 input_pickable = true
@@ -179,3 +221,22 @@ scale = Vector2(1.5, 1.5)
 physics_interpolation_mode = 1
 process_callback = 0
 position_smoothing_enabled = true
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(-3, -5)
+shape = SubResource("CapsuleShape2D_x3wgy")
+debug_color = Color(0.23371524, 0.69331187, 0, 0.41960785)
+
+[node name="InvincibleTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimatedSprite2D")
+libraries = {
+&"": SubResource("AnimationLibrary_3smsa")
+}
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="timeout" from="InvincibleTimer" to="." method="_on_invincible_timer_timeout"]

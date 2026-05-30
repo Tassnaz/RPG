@@ -3,13 +3,17 @@ extends CharacterBody2D
 
 # Variables
 var is_attacking: bool = false
+var invincible: bool = false
 
+@export var HP: int = 100
 @export var max_speed: float = 350.0
 @export var acceleration: float = 1500.0
 @export var friction: float = 3000.0
 
-@onready var anim_player = $AnimatedSprite2D
-@onready var sword = $Sword
+@onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var anim_player: AnimationPlayer = $AnimationPlayer
+@onready var sword: Area2D = $Sword
+@onready var invincible_timer: Timer = $InvincibleTimer
 
 func _ready():
 	# Connect signal
@@ -56,8 +60,27 @@ func _physics_process(delta):
 		else:
 			$AnimatedSprite2D.play("default")
 
+func attacked(damage):
+	HP -= damage
+	print ("Player HP is ", HP)
+	
+	invincible = true
+	anim_player.play("invincible_flash")
+	invincible_timer.start()
+	
+	if HP <= 0:
+		get_tree().reload_current_scene()
+
 func _on_sword_attack_triggered():
 	is_attacking = true
-	anim_player.play("Attack 1")
-	await anim_player.animation_finished
+	anim_sprite.play("Attack 1")
+	await anim_sprite.animation_finished
 	is_attacking = false
+	
+func _on_hit_box_area_entered(area: Area2D) -> void:
+	if area.is_in_group("enemy_weapons") and not invincible:
+		attacked(area.damage)
+
+func _on_invincible_timer_timeout() -> void:
+	anim_player.stop()
+	invincible = false
