@@ -35,6 +35,8 @@ func attack_done():
 func player_entered_attack_sensor(body: Node2D):
 	if body.is_in_group("players"):
 		attack_delay_timer.start()
+		
+		print("Enemy attacking")
 
 func player_exited_attack_sensor(body: Node2D):
 	if body.is_in_group("players"):

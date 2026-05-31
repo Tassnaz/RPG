@@ -78,7 +78,7 @@ NPC_node = NodePath("..")
 quest_dialog_completed = Array[String](["You found my coin!"])
 
 [node name="Player" parent="." instance=ExtResource("3_qbrl8")]
-position = Vector2(196, 316)
+position = Vector2(1754, 272)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_f3gli")

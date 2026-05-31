@@ -4,12 +4,15 @@ var HP: int = 100
 var knockback_velocity: Vector2 = Vector2.ZERO
 var player: Node2D
 var player_detected: bool = false
+var distance_to_player: float
+
 
 @export var knockback_friction: float = 10.0
 @export var speed: float = 100.0
+@export var attack_range: float = 50.0
 
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
-
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready():
 	player = get_tree().get_first_node_in_group("players")
@@ -18,10 +21,17 @@ func _physics_process(delta):
 	# Uppdates health bar
 	$HealthBar.value = HP
 	
+	# Calculates distance between enemy and player.
+	distance_to_player = global_position.distance_to(player.global_position)
+	
 	if player == null:
 		return
 		
-	if player_detected:
+	# If player is detected and distance between is greater than the attack range navigate towards player.
+	if player_detected and distance_to_player >= attack_range:
+		
+		animated_sprite.play("running")
+		
 		# Tells the NavAgent where to go
 		nav_agent.target_position = player.global_position
 		
@@ -30,6 +40,11 @@ func _physics_process(delta):
 		var direction = global_position.direction_to(next_point)
 	
 		velocity = (direction * speed) + knockback_velocity
+	
+	# If the enemy is within attack range, stop and only apply knockback to velocity.
+	else:
+		animated_sprite.play("attacking")
+		velocity = knockback_velocity
 	
 	# Handles death
 	if HP <= 0:
