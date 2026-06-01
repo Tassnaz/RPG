@@ -1,5 +1,8 @@
 extends Area2D
 
+@onready var enemy: CharacterBody2D = get_parent()
+@onready var enemy_animated_sprite: AnimatedSprite2D = enemy.get_node("AnimatedSprite2D")
+
 @export var damage: int = 10
 @export var attack_duration: float = 0.3
 @export var attack_delay: float = 1.0
@@ -26,11 +29,13 @@ func attack():
 	self.visible = true
 	collision_shape.disabled = false
 	attack_duration_timer.start()
+	enemy_animated_sprite.play("attacking")
 
 func attack_done():
 	self.visible = false
 	collision_shape.disabled = true
 	attack_delay_timer.start()
+	
 	
 func player_entered_attack_sensor(body: Node2D):
 	if body.is_in_group("players"):

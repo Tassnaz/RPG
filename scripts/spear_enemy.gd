@@ -43,7 +43,6 @@ func _physics_process(delta):
 	
 	# If the enemy is within attack range, stop and only apply knockback to velocity.
 	else:
-		animated_sprite.play("attacking")
 		velocity = knockback_velocity
 	
 	# Handles death
