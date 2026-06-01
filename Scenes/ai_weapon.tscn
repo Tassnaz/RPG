@@ -1,12 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://tfte5i38rhwj"]
+[gd_scene load_steps=6 format=3 uid="uid://tfte5i38rhwj"]
 
 [ext_resource type="Script" uid="uid://qqjab0alqke6" path="res://scripts/ai_weapon.gd" id="1_bq1b1"]
+[ext_resource type="AudioStream" uid="uid://cbsqevbco8b23" path="res://assets/SFX/Player_getting_damag_#1-1780343909218.wav" id="2_0ljx3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0ljx3"]
 radius = 87.20665
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bq1b1"]
 radius = 104.04326
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ix7lb"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("2_0ljx3")
 
 [node name="ai_weapon" type="Area2D" groups=["enemy_weapons"]]
 script = ExtResource("1_bq1b1")
@@ -25,3 +31,6 @@ one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackSensor"]
 shape = SubResource("CircleShape2D_bq1b1")
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_ix7lb")

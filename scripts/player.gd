@@ -6,6 +6,7 @@ var is_attacking: bool = false
 var invincible: bool = false
 
 @export var HP: int = 100
+@export var max_HP: int = 100
 @export var max_speed: float = 350.0
 @export var acceleration: float = 1500.0
 @export var friction: float = 3000.0
@@ -18,6 +19,8 @@ var invincible: bool = false
 func _ready():
 	# Connect signal
 	sword.attack_triggered.connect(_on_sword_attack_triggered)
+	
+	Global.uppdate_playerHP.emit(max_HP, HP)
 
 func _physics_process(delta):
 	# Movement
@@ -61,12 +64,15 @@ func _physics_process(delta):
 			$AnimatedSprite2D.play("default")
 
 func attacked(damage):
-	HP -= damage
-	print ("Player HP is ", HP)
-	
-	invincible = true
-	anim_player.play("invincible_flash")
-	invincible_timer.start()
+	if not invincible:
+		HP -= damage
+		print ("Player HP is ", HP)
+		
+		Global.uppdate_playerHP.emit(max_HP, HP)
+		
+		invincible = true
+		anim_player.play("invincible_flash")
+		invincible_timer.start()
 	
 	if HP <= 0:
 		get_tree().reload_current_scene()

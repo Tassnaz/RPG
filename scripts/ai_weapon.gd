@@ -1,16 +1,18 @@
 extends Area2D
 
-@onready var enemy: CharacterBody2D = get_parent()
-@onready var enemy_animated_sprite: AnimatedSprite2D = enemy.get_node("AnimatedSprite2D")
-
 @export var damage: int = 10
 @export var attack_duration: float = 0.3
 @export var attack_delay: float = 1.0
+
+@onready var enemy: CharacterBody2D = get_parent()
+@onready var enemy_animated_sprite: AnimatedSprite2D = enemy.get_node("AnimatedSprite2D")
+@onready var player: CharacterBody2D = get_parent().get_parent().get_parent().get_node("Player")
 
 @onready var attack_delay_timer: Timer = $AttackDelay
 @onready var attack_duration_timer: Timer = $AttackDuration
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var attack_sensor: Area2D = $AttackSensor
+@onready var hit_sound: AudioStreamPlayer2D = $HitSound
 
 func _ready() -> void:
 	self.visible = false
@@ -27,10 +29,36 @@ func _ready() -> void:
 
 func attack():
 	self.visible = true
-	collision_shape.disabled = false
 	attack_duration_timer.start()
-	enemy_animated_sprite.play("attacking")
-
+	hit_sound.play()
+	
+	# Runs the corresponding attack animation based on player position.
+	var direction = enemy.global_position.direction_to(player.global_position)
+	
+	enemy_animated_sprite.flip_h = direction.x < 0
+	
+	var abs_x = abs(direction.x)
+	var abs_y = abs(direction.y)
+	
+	if abs_y < 0.4:
+		enemy_animated_sprite.play("attacking_right")
+	elif abs_x <0.4:
+		if direction.y > 0:
+			enemy_animated_sprite.play("attacking_down")
+		else:
+			enemy_animated_sprite.play("attacking_up")
+	else:
+		if direction.y > 0:
+			enemy_animated_sprite.play("attacking_down_right")
+		else:
+			enemy_animated_sprite.play("attacking_up_right")
+			
+	collision_shape.disabled = false
+	await enemy_animated_sprite.animation_finished
+	collision_shape.disabled = false
+	
+	
+	
 func attack_done():
 	self.visible = false
 	collision_shape.disabled = true

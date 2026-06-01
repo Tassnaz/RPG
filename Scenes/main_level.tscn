@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://dp3tdjdbw5te8"]
+[gd_scene load_steps=15 format=4 uid="uid://dp3tdjdbw5te8"]
 
 [ext_resource type="TileSet" uid="uid://copk8h1vbac1" path="res://Tilesets/TinySwordTerrain.tres" id="1_ikcpc"]
 [ext_resource type="TileSet" uid="uid://ck7j715ksnc0h" path="res://Tilesets/BG Color.tres" id="1_lwkuy"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ddmktbtmqsdbs" path="res://Scenes/spear_enemy.tscn" id="6_236hc"]
 [ext_resource type="PackedScene" uid="uid://doxsvgsd1ienm" path="res://Scenes/monk_npc.tscn" id="8_tqiex"]
 [ext_resource type="PackedScene" uid="uid://8104eyvtxrji" path="res://Scenes/simple_quest_module.tscn" id="9_2jcip"]
+[ext_resource type="PackedScene" uid="uid://rkprjwj1yyvq" path="res://Scenes/player_hud.tscn" id="11_2jcip"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lwkuy"]
 texture = ExtResource("4_ha3dl")
@@ -78,7 +79,15 @@ NPC_node = NodePath("..")
 quest_dialog_completed = Array[String](["You found my coin!"])
 
 [node name="Player" parent="." instance=ExtResource("3_qbrl8")]
-position = Vector2(1754, 272)
+position = Vector2(689, 319)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_f3gli")
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="PlayerHUD" parent="GUI" instance=ExtResource("11_2jcip")]
+offset_left = 5.0
+offset_top = 7.0
+offset_right = 5.0
+offset_bottom = 7.0
