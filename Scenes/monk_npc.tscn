@@ -67,7 +67,7 @@ anti_aliasing = false
 [node name="Monk NPC" type="CharacterBody2D"]
 script = ExtResource("1_yy66q")
 npc_name = "Wormald"
-dialog_array = Array[String](["Greetings, traveller!", "I am the renowned Monk Wormald himself!", "I need your assistance in a matter...", "You see, my sacred coin has been STOLEN from me.", "By the tyrrannical knight ARGOL.", "He resides in his castle up north from here.", "I would go myself but... ehh my  legs are kinda sore...", "I trust you will handle it, right?"])
+dialog_array = Array[String](["Greetings, traveller!", "I am the renowned Monk Wormald himself!", "I need your assistance in a matter...", "You see, my sacred coin has been STOLEN from me.", "By the tyrrannical guards.", "They reside up north from here.", "I would go myself but... ehh my  legs are kinda sore...", "I trust you will handle it, right?"])
 metadata/_edit_vertical_guides_ = [-247.0]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

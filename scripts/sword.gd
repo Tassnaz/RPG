@@ -8,6 +8,9 @@ var is_attacking = false
 @export var Damage: int = 20
 @export var knockback_force: float = 300.0
 
+@onready var swing_sfx: AudioStreamPlayer2D = $SwingSFX
+@onready var hit_sfx: AudioStreamPlayer2D = $HitSFX
+
 
 func _ready():
 	$CollisionPolygon2D.disabled = true
@@ -15,6 +18,7 @@ func _ready():
 func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("Attack") && is_attacking == false:
+		swing_sfx.play()
 		$CollisionPolygon2D.disabled = false
 		attack_triggered.emit()
 		
@@ -32,5 +36,7 @@ func _on_cool_down_timeout():
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
+		swing_sfx.stop()
+		hit_sfx.play()
 		var knockback_dir = (body.global_position - global_position).normalized()
 		body.apply_knockback(knockback_dir * knockback_force)

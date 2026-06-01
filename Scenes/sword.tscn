@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvcnq221c6tyu"]
+[gd_scene load_steps=6 format=3 uid="uid://bvcnq221c6tyu"]
 
 [ext_resource type="Script" uid="uid://dlftb0dkcnl0g" path="res://scripts/sword.gd" id="1_1r7mj"]
+[ext_resource type="AudioStream" uid="uid://fcs5v5u2k1yb" path="res://assets/SFX/Player_swinging_swor_#1-1780344745525.wav" id="2_6wdhb"]
+[ext_resource type="AudioStream" uid="uid://duh1oc7c0psvj" path="res://assets/SFX/Player_hitting_enemy_#2-1780344647158.wav" id="3_d6wag"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_d6wag"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("2_6wdhb")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kb2vl"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("3_d6wag")
 
 [node name="Sword" type="Area2D" groups=["enemies", "weapons"]]
 script = ExtResource("1_1r7mj")
@@ -13,6 +25,12 @@ polygon = PackedVector2Array(-5.4838715, 1.0256411, -7.7419357, -7.1794877, -10.
 
 [node name="CoolDown" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="SwingSFX" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_d6wag")
+
+[node name="HitSFX" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_kb2vl")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="CoolDown" to="." method="_on_cool_down_timeout"]
