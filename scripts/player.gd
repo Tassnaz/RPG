@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-
+class_name Player
 # Variables
 var is_attacking: bool = false
 var invincible: bool = false
