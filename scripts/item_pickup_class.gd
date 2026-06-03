@@ -1,6 +1,8 @@
+@icon("res://icon.svg")
+
 extends Area2D
 
-class_name  Pickup_ItemClass
+class_name Pickup_ItemClass
 
 var item_ID: int
 var item_name: String

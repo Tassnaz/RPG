@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://dp3tdjdbw5te8"]
+[gd_scene load_steps=26 format=4 uid="uid://dp3tdjdbw5te8"]
 
 [ext_resource type="TileSet" uid="uid://copk8h1vbac1" path="res://Tilesets/TinySwordTerrain.tres" id="1_ikcpc"]
 [ext_resource type="TileSet" uid="uid://ck7j715ksnc0h" path="res://Tilesets/BG Color.tres" id="1_lwkuy"]
@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://doxsvgsd1ienm" path="res://Scenes/monk_npc.tscn" id="8_tqiex"]
 [ext_resource type="PackedScene" uid="uid://8104eyvtxrji" path="res://Scenes/simple_quest_module.tscn" id="9_2jcip"]
 [ext_resource type="PackedScene" uid="uid://rkprjwj1yyvq" path="res://Scenes/player_hud.tscn" id="11_2jcip"]
+[ext_resource type="PackedScene" uid="uid://lce6f3loekay" path="res://Scenes/pickup_meat.tscn" id="16_unus1"]
+[ext_resource type="PackedScene" uid="uid://0mcwp6mei82i" path="res://Scenes/use_Meat.tscn" id="17_vgie2"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_f3gli"]
 vertices = PackedVector2Array(1676.8906, 425.5078, 1615, 428.5, 1615, 379.97656, 1843.4688, -51.148438, 2091.0938, -47.148438, 2097.8906, 621.96875, 1678.8906, 621.02344, 1613.9688, 49.3125, 1487.3203, -81.21094, 1490.6406, -174.9375, 1837.4688, -173.04688, 1550, -76.24219, 1550, 47.296875)
@@ -111,6 +113,18 @@ position = Vector2(1962, 86)
 [node name="Spear Enemy3" parent="Enemies" instance=ExtResource("6_236hc")]
 position = Vector2(1701, 234)
 
+[node name="Pickups" type="Node2D" parent="."]
+position = Vector2(115, 346)
+
+[node name="Pickup_Meat" parent="Pickups" instance=ExtResource("16_unus1")]
+position = Vector2(434, 35)
+
+[node name="Pickup_Meat2" parent="Pickups" instance=ExtResource("16_unus1")]
+position = Vector2(670, -39)
+
+[node name="Pickup_Meat3" parent="Pickups" instance=ExtResource("16_unus1")]
+position = Vector2(720, 106)
+
 [node name="Monk NPC" parent="." instance=ExtResource("8_tqiex")]
 position = Vector2(642, 213)
 
@@ -118,11 +132,11 @@ position = Vector2(642, 213)
 NPC_node = NodePath("..")
 quest_dialog_completed = Array[String](["You found my coin!"])
 
-[node name="Player" parent="." instance=ExtResource("3_qbrl8")]
-position = Vector2(115, 346)
-
 [node name="CoinQuestItem" parent="." instance=ExtResource("5_f3gli")]
 position = Vector2(1579, -133)
+
+[node name="Player" parent="." instance=ExtResource("3_qbrl8")]
+position = Vector2(115, 346)
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
@@ -131,3 +145,9 @@ offset_left = 5.0
 offset_top = 7.0
 offset_right = 5.0
 offset_bottom = 7.0
+
+[node name="Use_Meat" parent="GUI" instance=ExtResource("17_vgie2")]
+offset_left = 8.0
+offset_top = 68.0
+offset_right = 48.0
+offset_bottom = 108.0

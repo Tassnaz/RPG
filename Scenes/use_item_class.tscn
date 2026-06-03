@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://db0x08okqa1u7"]
+
+[ext_resource type="Texture2D" uid="uid://hx5mkxsy5dfg" path="res://icon.svg" id="1_1vdpq"]
+[ext_resource type="StyleBox" uid="uid://cpnmyxmytndeh" path="res://item_style.tres" id="1_pm15d"]
+[ext_resource type="Script" uid="uid://b60ud3lrlw8e5" path="res://scripts/use_item_class.gd" id="2_tm1sy"]
+[ext_resource type="StyleBox" uid="uid://c1yyuwlqvs8n0" path="res://focus_item_style.tres" id="4_sbe12"]
+
+[node name="UseItem_class" type="Panel"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = ExtResource("1_pm15d")
+script = ExtResource("2_tm1sy")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 129.0
+offset_bottom = 129.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_1vdpq")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("4_sbe12")
+
+[node name="Action" type="Node" parent="."]

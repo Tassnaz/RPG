@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 class_name Player
+
 # Variables
 var is_attacking: bool = false
 var invincible: bool = false
@@ -20,7 +21,9 @@ func _ready():
 	# Connect signal
 	sword.attack_triggered.connect(_on_sword_attack_triggered)
 	
-	Global.uppdate_playerHP.emit(max_HP, HP)
+	Global.update_playerHP.emit(max_HP, HP)
+	
+	BuffManager.player_heal.connect(heal)
 
 func _physics_process(delta):
 	# Movement
@@ -68,7 +71,7 @@ func attacked(damage):
 		HP -= damage
 		print ("Player HP is ", HP)
 		
-		Global.uppdate_playerHP.emit(max_HP, HP)
+		Global.update_playerHP.emit(max_HP, HP)
 		
 		invincible = true
 		anim_player.play("invincible_flash")
@@ -82,7 +85,18 @@ func _on_sword_attack_triggered():
 	anim_sprite.play("Attack 1")
 	await anim_sprite.animation_finished
 	is_attacking = false
+
+func heal(amount: int) -> void:
 	
+	HP += amount
+	
+	if HP > max_HP:
+		HP = max_HP
+	
+	print ("Player healed by ",amount, ".")
+	
+	Global.update_playerHP.emit(max_HP, HP)
+
 func _on_hit_box_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy_weapons") and not invincible:
 		attacked(area.damage)

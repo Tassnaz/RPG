@@ -2,7 +2,7 @@ extends Node
 
 enum item_type {
 	test_item,
-	health_potion,
+	meat,
 	speed_potion,
 	quest_key_1,
 }

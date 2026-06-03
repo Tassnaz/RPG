@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://rkprjwj1yyvq"]
 
 [ext_resource type="Texture2D" uid="uid://bxct37wanr7uh" path="res://assets/BigBar_Base_Connected.png" id="1_iori6"]
-[ext_resource type="Script" uid="uid://didpki2ab8ebb" path="res://Scenes/player_hud.gd" id="1_pkmr8"]
+[ext_resource type="Script" uid="uid://didpki2ab8ebb" path="res://scripts/player_hud.gd" id="1_pkmr8"]
 [ext_resource type="Texture2D" uid="uid://bb31ol2f0exof" path="res://assets/Tiny Swords (Free Pack)/UI Elements/UI Elements/Bars/BigBar_Fill.png" id="2_pkmr8"]
 
 [node name="PlayerHUD" type="Control"]

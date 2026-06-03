@@ -1,15 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://dxskrv76i12ay"]
 
 [ext_resource type="Texture2D" uid="uid://hx5mkxsy5dfg" path="res://icon.svg" id="1_5sv2f"]
-[ext_resource type="Script" uid="uid://cbpp6to088ftn" path="res://Scenes/item_pickup_class.gd" id="1_b3ejh"]
+[ext_resource type="Script" uid="uid://cbpp6to088ftn" path="res://scripts/item_pickup_class.gd" id="1_b3ejh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oqhfg"]
 radius = 48.0
 
 [node name="pickup_ItemClass" type="Area2D"]
 script = ExtResource("1_b3ejh")
-item_select = null
-pickup_amount = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
