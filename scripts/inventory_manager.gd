@@ -1,5 +1,7 @@
 extends Node
 
+signal add_item_to_UI(ID: int)
+
 enum item_type {
 	test_item,
 	meat,
@@ -8,6 +10,10 @@ enum item_type {
 }
 
 enum item {AMOUNT, NAME}
+
+var use_item_load: Dictionary [int, PackedScene] = {
+	item_type.meat: preload("res://Scenes/use_Meat.tscn")
+}
 
 var inventory :Dictionary = {
 	item_type.test_item: [0, "test item"],
@@ -32,6 +38,8 @@ func add_item(ID: int, amount: int, item_name: String):
 		inventory[ID][item.AMOUNT] += amount
 		print ("Added ", amount," ",inventory[ID][item.NAME], " to inventory")
 	print (inventory)
+	
+	add_item_to_UI.emit(ID)
 	
 func remove_item(ID: int, amount: int):
 	if not inventory.has(ID):
